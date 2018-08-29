@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -16,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+
+import org.json.*;
 
 @Configuration
 @EnableBatchProcessing
@@ -41,6 +44,18 @@ public class BatchJobConfiguration
                 .names(Fields.getNames())
                 .fieldSetMapper(new RecordFieldSetMapper())
                 .build();
+    }
+    
+    @Bean
+    public ItemProcessor<Map<String, String>, String> processor()
+    {
+    	return item -> {
+    		JSONObject json = new JSONObject(item);
+    		String processedItem = json.toString();
+    		long delay = Long.parseLong(env.getRequiredProperty("delay.record"));
+    		Thread.sleep(delay);
+    		return processedItem;
+    	};
     }
     
     
