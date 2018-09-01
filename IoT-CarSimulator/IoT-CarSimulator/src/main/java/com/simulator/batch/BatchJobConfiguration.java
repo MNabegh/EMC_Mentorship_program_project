@@ -112,7 +112,7 @@ public class BatchJobConfiguration
 	@Bean
 	public Step step1(Gateway writer) {
 		return stepBuilderFactory.get("step1")
-				.<Map<String, String>, String> chunk(10)
+				.<Map<String, String>, String> chunk(1)
 				.reader(reader())
 				.processor(processor())
 				.writer(writer)
