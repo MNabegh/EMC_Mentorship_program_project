@@ -34,6 +34,7 @@ public class BatchConfiguration {
     public StepBuilderFactory stepBuilderFactory;
 
     // tag::readerwriterprocessor[]
+    		
     @Bean
     public FlatFileItemReader<Person> reader() {
         return new FlatFileItemReaderBuilder<Person>()
@@ -83,4 +84,23 @@ public class BatchConfiguration {
             .build();
     }
     // end::jobstep[]
+    
+    @Bean
+	public Step step1() throws Exception {
+		return stepBuilderFactory.get("step1")
+					   .<Map<String, Object>, String> chunk(1)
+					   .reader(reader(null))
+					   .processor(processor(-1l))
+					   .writer(writer())
+					   .build();
+	}
+
+	@Bean
+	public Job simulatorJob(Step step1) throws Exception {
+		return jobBuilderFactory.get("simulatorJob")
+					   .incrementer(new RunIdIncrementer())
+					   .flow(step1)
+					   .end()
+					   .build();
+	}
 }

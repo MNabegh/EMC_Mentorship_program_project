@@ -1,4 +1,4 @@
-package java.com.simulator;
+package com.simulator.batch;
 
 import java.util.HashMap;
 import java.util.Map;
