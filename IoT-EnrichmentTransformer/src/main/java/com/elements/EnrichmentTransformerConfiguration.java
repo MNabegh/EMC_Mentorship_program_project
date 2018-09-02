@@ -19,6 +19,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 import com.elements.filter.DataFilter;
+import com.elements.service.Gateway;
 import com.elements.transformer.EnrichmentTransformer;
 
 @Configuration
@@ -36,6 +37,9 @@ public class EnrichmentTransformerConfiguration
 
 	@Autowired
 	public DataFilter dataFilter;
+	
+	@Autowired
+	public Gateway gateway;
 
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
@@ -66,6 +70,13 @@ public class EnrichmentTransformerConfiguration
 	{
 		return new EnrichmentTransformer();
 	}
+	
+	@Bean
+	public Gateway gateway ()
+	{
+		return new Gateway();
+	}
+
 
 	@KafkaListener(topics = "Simulator", groupId = "group-id")
 	public void listen(String message) 
@@ -75,8 +86,7 @@ public class EnrichmentTransformerConfiguration
 		
 		String result = transformer.transform(message);
 		
-		logger.info(message);
-		logger.info(result);
+		gateway.sendMessage(result);
 	}
 
 }
