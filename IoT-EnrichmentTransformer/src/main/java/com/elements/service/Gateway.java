@@ -12,7 +12,7 @@ public class Gateway implements InitializingBean
 	
 	public void sendMessage(String msg)
 	{
-		kafkaTemplate.send("Simulator", msg);
+		kafkaTemplate.send("Transformer", msg);
 	}
 
 	@Override

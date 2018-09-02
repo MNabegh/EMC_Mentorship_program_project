@@ -1,10 +1,15 @@
 package com.elements.transformer;
 
+import org.json.JSONObject;
+
 public class EnrichmentTransformer
 {	
-	public void transform()//JSONObject filteredMessage)
+	public String transform(String filteredMessage)//JSONObject filteredMessage)
 	{
-		//gateway.sendMessage(transformedMessage);
+		JSONObject jObject = new JSONObject(filteredMessage);
+		jObject.append("timestamp", System.currentTimeMillis());
+		
+		return jObject.toString();
 	}
 
 }

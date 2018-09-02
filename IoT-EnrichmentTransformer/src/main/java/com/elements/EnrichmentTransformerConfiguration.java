@@ -30,10 +30,10 @@ public class EnrichmentTransformerConfiguration
 
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	public EnrichmentTransformer transformer;
-	
+
 	@Autowired
 	public DataFilter dataFilter;
 
@@ -46,7 +46,7 @@ public class EnrichmentTransformerConfiguration
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		return new DefaultKafkaConsumerFactory<>(props);
 	}
-	
+
 	@Bean
 	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> 
@@ -54,24 +54,29 @@ public class EnrichmentTransformerConfiguration
 		factory.setConsumerFactory(consumerFactory());
 		return factory;
 	}
-	
+
 	@Bean
 	public DataFilter dataFilter()
 	{
 		return new DataFilter();
 	}
-	
+
 	@Bean
 	public EnrichmentTransformer transformer()
 	{
 		return new EnrichmentTransformer();
 	}
-	
+
 	@KafkaListener(topics = "Simulator", groupId = "group-id")
 	public void listen(String message) 
 	{
-	   //System.out.println("Received Messasge in group - group-id: " + message);
-	   dataFilter.filter(message);
+		if(!dataFilter.filter(message))
+			return;
+		
+		String result = transformer.transform(message);
+		
+		logger.info(message);
+		logger.info(result);
 	}
 
 }
