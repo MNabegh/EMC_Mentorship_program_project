@@ -62,6 +62,8 @@ public class CarRecord
 		String time = c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND);
 		
 		timestamp = date + " " + time;
+		
+		System.out.println(timestamp);
 	}
 	
 	
