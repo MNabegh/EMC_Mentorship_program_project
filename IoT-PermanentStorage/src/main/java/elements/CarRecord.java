@@ -10,10 +10,10 @@ public class CarRecord
 	
 	public int ord, ALTITUDE, BAROMETRIC_PRESSURE, ENGINE_COOLANT_TEMP,
 	AMBIENT_AIR_TEMP, ENGINE_RPM, INTAKE_MANIFOLD_PRESSURE, AIR_INTAKE_TEMP,
-	SPEED, EQUIV_RATIO;
+	SPEED;
 	
 	public double LATITUDE, LONGITUDE, FUEL_LEVEL, ENGINE_LOAD, MAF,
-	SHORT_TERM_FUEL_TRIM_BANK_1, THROTTLE_POS, TIMING_ADVANCE;
+	SHORT_TERM_FUEL_TRIM_BANK_1, THROTTLE_POS;
 	
 	public String ENGINE_RUNTIME, DTC_NUMBER;
 	
@@ -40,8 +40,6 @@ public class CarRecord
 		AIR_INTAKE_TEMP = Integer
 				.parseInt(jObject.getString("AIR_INTAKE_TEMP").toString());
 		SPEED = Integer.parseInt(jObject.getString("SPEED").toString());
-		EQUIV_RATIO = Double
-				.parseDouble(jObject.getString("EQUIV_RATIO").toString());
 		
 		LATITUDE = Double.parseDouble(jObject.getString("LATITUDE").toString());
 		LONGITUDE = Double.parseDouble(jObject.getString("LONGITUDE").toString());
@@ -52,8 +50,6 @@ public class CarRecord
 				.parseDouble(jObject.getString("SHORT_TERM_FUEL_TRIM_BANK_1").toString());
 		THROTTLE_POS = Double
 				.parseDouble(jObject.getString("THROTTLE_POS").toString());
-		TIMING_ADVANCE = Double
-				.parseDouble(jObject.getString("TIMING_ADVANCE").toString());
 		
 		System.out.println(jObject.getString("timestamp").toString());
 	}
