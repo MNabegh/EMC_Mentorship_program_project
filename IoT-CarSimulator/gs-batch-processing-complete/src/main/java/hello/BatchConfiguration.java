@@ -85,22 +85,30 @@ public class BatchConfiguration {
     }
     // end::jobstep[]
     
-    @Bean
-	public Step step1() throws Exception {
+	@Bean
+	public Gateway writer ()
+	{
+		System.out.println("enter writer method");
+		return new Gateway();
+	}
+    
+
+	@Bean
+	public Step step1(Gateway writer) {
 		return stepBuilderFactory.get("step1")
-					   .<Map<String, Object>, String> chunk(1)
-					   .reader(reader(null))
-					   .processor(processor(-1l))
-					   .writer(writer())
-					   .build();
+				.<Map<String, String>, String> chunk(1)
+				.reader(reader())
+				.processor(processor())
+				.writer(writer)
+				.build();
 	}
 
 	@Bean
-	public Job simulatorJob(Step step1) throws Exception {
+	public Job simulatorJob(Step step1) {
 		return jobBuilderFactory.get("simulatorJob")
-					   .incrementer(new RunIdIncrementer())
-					   .flow(step1)
-					   .end()
-					   .build();
+				.incrementer(new RunIdIncrementer())
+				.flow(step1)
+				.end()
+				.build();
 	}
 }

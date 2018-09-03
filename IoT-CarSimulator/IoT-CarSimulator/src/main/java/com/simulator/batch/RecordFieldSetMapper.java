@@ -32,8 +32,6 @@ public class RecordFieldSetMapper implements FieldSetMapper<Map<String,String>>
 		map.put("ENGINE_RUNTIME", fieldSet.readString(16));
 		map.put("THROTTLE_POS", fieldSet.readString(17));
 		map.put("DTC_NUMBER", fieldSet.readString(18));
-		map.put("TIMING_ADVANCE", fieldSet.readString(19));
-		map.put("EQUIV_RATIO", fieldSet.readString(20));
 		
 		return map;
 		

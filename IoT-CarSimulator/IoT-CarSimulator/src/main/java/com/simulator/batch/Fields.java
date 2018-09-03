@@ -22,9 +22,7 @@ public enum Fields
 	SHORT_TERM_FUEL_TRIM_BANK_1,
 	ENGINE_RUNTIME,
 	THROTTLE_POS,
-	DTC_NUMBER,
-	TIMING_ADVANCE,
-	EQUIV_RATIO;
+	DTC_NUMBER;
 	
 	public static String[] getNames()
 	{
