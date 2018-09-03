@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
 
+import elements.CarRecord;
 import elements.MongoInterfaceConfiguration;
 
 @SpringBootApplication
@@ -20,6 +21,6 @@ public class IoTPermanentStorageApplication {
 	@KafkaListener(topics = "Transformer", groupId = "group-id")
 	public void listen(String message) 
 	{
-		logger.info(message);
+		new CarRecord(message);
 	}
 }
