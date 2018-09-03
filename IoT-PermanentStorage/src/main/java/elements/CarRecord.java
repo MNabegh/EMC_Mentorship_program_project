@@ -1,5 +1,7 @@
 package elements;
 
+import java.util.Calendar;
+
 import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 
@@ -16,6 +18,8 @@ public class CarRecord
 	SHORT_TERM_FUEL_TRIM_BANK_1, THROTTLE_POS;
 	
 	public String ENGINE_RUNTIME, DTC_NUMBER;
+	
+	public String timestamp;
 	
 	public CarRecord(String message)
 	{
@@ -51,7 +55,13 @@ public class CarRecord
 		THROTTLE_POS = Double
 				.parseDouble(jObject.getString("THROTTLE_POS").toString());
 		
-		System.out.println(jObject.getString("timestamp").toString());
+		long tempTimestamp = Long.parseLong(jObject.getString("timestamp").toString());
+		Calendar c = Calendar.getInstance();
+		c.setTimeInMillis(tempTimestamp);
+		String date = c.get(Calendar.YEAR)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.DAY_OF_MONTH);
+		String time = c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND);
+		
+		timestamp = date + " " + time;
 	}
 	
 	
