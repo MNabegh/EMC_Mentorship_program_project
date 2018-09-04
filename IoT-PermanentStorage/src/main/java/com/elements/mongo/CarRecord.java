@@ -1,31 +1,28 @@
-package elements;
+package com.elements.mongo;
 
 import java.util.Calendar;
-
 import org.json.JSONObject;
-import org.springframework.data.annotation.Id;
 
 public class CarRecord
 {
-	@Id
-	public String VIN;
+	private String vin;
 	
-	public int ord, ALTITUDE, BAROMETRIC_PRESSURE, ENGINE_COOLANT_TEMP,
+	private int ord, ALTITUDE, BAROMETRIC_PRESSURE, ENGINE_COOLANT_TEMP,
 	AMBIENT_AIR_TEMP, ENGINE_RPM, INTAKE_MANIFOLD_PRESSURE, AIR_INTAKE_TEMP,
 	SPEED;
 	
-	public double LATITUDE, LONGITUDE, FUEL_LEVEL, ENGINE_LOAD, MAF,
+	private double LATITUDE, LONGITUDE, FUEL_LEVEL, ENGINE_LOAD, MAF,
 	SHORT_TERM_FUEL_TRIM_BANK_1, THROTTLE_POS;
 	
-	public String ENGINE_RUNTIME, DTC_NUMBER;
+	private String ENGINE_RUNTIME, DTC_NUMBER;
 	
-	public String timestamp;
+	private String timestamp;
 	
 	public CarRecord(String message)
 	{
 		JSONObject jObject = new JSONObject(message);
 		
-		VIN = jObject.getString("VEHICLE_ID").toString();
+		vin = jObject.getString("VEHICLE_ID").toString();
 		ENGINE_RUNTIME = jObject.getString("ENGINE_RUNTIME").toString();
 		DTC_NUMBER = jObject.getString("DTC_NUMBER").toString();
 		
@@ -62,10 +59,87 @@ public class CarRecord
 		String time = c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND);
 		
 		timestamp = date + " " + time;
-		
-		System.out.println(timestamp);
+
 	}
-	
-	
+
+	public String getVin() {
+		return vin;
+	}
+
+	public int getOrd() {
+		return ord;
+	}
+
+	public int getALTITUDE() {
+		return ALTITUDE;
+	}
+
+	public int getBAROMETRIC_PRESSURE() {
+		return BAROMETRIC_PRESSURE;
+	}
+
+	public int getENGINE_COOLANT_TEMP() {
+		return ENGINE_COOLANT_TEMP;
+	}
+
+	public int getAMBIENT_AIR_TEMP() {
+		return AMBIENT_AIR_TEMP;
+	}
+
+	public int getENGINE_RPM() {
+		return ENGINE_RPM;
+	}
+
+	public int getINTAKE_MANIFOLD_PRESSURE() {
+		return INTAKE_MANIFOLD_PRESSURE;
+	}
+
+	public int getAIR_INTAKE_TEMP() {
+		return AIR_INTAKE_TEMP;
+	}
+
+	public int getSPEED() {
+		return SPEED;
+	}
+
+	public double getLATITUDE() {
+		return LATITUDE;
+	}
+
+	public double getLONGITUDE() {
+		return LONGITUDE;
+	}
+
+	public double getFUEL_LEVEL() {
+		return FUEL_LEVEL;
+	}
+
+	public double getENGINE_LOAD() {
+		return ENGINE_LOAD;
+	}
+
+	public double getMAF() {
+		return MAF;
+	}
+
+	public double getSHORT_TERM_FUEL_TRIM_BANK_1() {
+		return SHORT_TERM_FUEL_TRIM_BANK_1;
+	}
+
+	public double getTHROTTLE_POS() {
+		return THROTTLE_POS;
+	}
+
+	public String getENGINE_RUNTIME() {
+		return ENGINE_RUNTIME;
+	}
+
+	public String getDTC_NUMBER() {
+		return DTC_NUMBER;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
 
 }

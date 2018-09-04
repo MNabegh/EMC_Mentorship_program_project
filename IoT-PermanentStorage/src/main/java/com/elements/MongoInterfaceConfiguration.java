@@ -1,4 +1,4 @@
-package elements;
+package com.elements;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +17,20 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
+import com.elements.mongo.CarRecord;
+import com.elements.mongo.CarRecordRepository;
+
 @Configuration
 @EnableKafka
 public class MongoInterfaceConfiguration 
 {
-
+	private static final Logger logger =
+			LoggerFactory.getLogger(MongoInterfaceConfiguration.class);
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	private CarRecordRepository repository;
 	
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
@@ -41,6 +48,15 @@ public class MongoInterfaceConfiguration
 		factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
 		return factory;
+	}
+	
+	@KafkaListener(topics = "Transformer", groupId = "group-id")
+	public void listen(String message) 
+	{
+		CarRecord newRecord = new CarRecord(message);
+		repository.save(newRecord);
+		logger.info("Saved car " + newRecord.getVin()
+		+ " Record " + newRecord.getOrd());
 	}
 
 }

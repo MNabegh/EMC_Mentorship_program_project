@@ -1,26 +1,27 @@
 package com;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.KafkaListener;
-
-import elements.CarRecord;
-import elements.MongoInterfaceConfiguration;
+import com.elements.mongo.CarRecordRepository;
 
 @SpringBootApplication
-public class IoTPermanentStorageApplication {
-	private static final Logger logger =
-			LoggerFactory.getLogger(MongoInterfaceConfiguration.class);
-
+public class IoTPermanentStorageApplication implements ApplicationRunner
+{
+	@Autowired
+	private CarRecordRepository repository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(IoTPermanentStorageApplication.class, args);
 	}
-	
-	@KafkaListener(topics = "Transformer", groupId = "group-id")
-	public void listen(String message) 
-	{
-		new CarRecord(message);
+
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		repository.deleteAll();
+		
 	}
+	
+
 }
