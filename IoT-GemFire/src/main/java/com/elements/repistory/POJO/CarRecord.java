@@ -3,9 +3,12 @@ package com.elements.repistory.POJO;
 import java.io.Serializable;import java.util.Calendar;
 import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.gemfire.mapping.annotation.Region;
 
-@Region("connected_cars")
+import lombok.Getter;
+
+@Region(value = "CarRecords")
 public class CarRecord implements Serializable
 {
 	/**
@@ -14,6 +17,7 @@ public class CarRecord implements Serializable
 	private static final long serialVersionUID = 1;
 
 	@Id
+    @Getter
 	private String vin;
 	
 	private int ord, ALTITUDE, BAROMETRIC_PRESSURE, ENGINE_COOLANT_TEMP,
@@ -27,6 +31,7 @@ public class CarRecord implements Serializable
 	
 	private String timestamp;
 	
+	@PersistenceConstructor
 	public CarRecord(String message)
 	{
 		JSONObject jObject = new JSONObject(message);
