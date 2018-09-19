@@ -18,7 +18,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.elements.repistory.CarRecordRepository;
 import com.elements.repistory.POJO.CarRecord;
@@ -31,6 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableEntityDefinedRegions(basePackageClasses = CarRecord.class,
 clientRegionShortcut = ClientRegionShortcut.LOCAL)
 @EnableGemfireRepositories
+@RestController
 public class GemFireConfiguration 
 {
 	@Autowired
@@ -62,14 +65,20 @@ public class GemFireConfiguration
 	{
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
-		CarRecord test = repository.findByVin("control1");
+		/*CarRecord test = repository.findByVin("control1");
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			String jsonInString = mapper.writeValueAsString(test);
+			//String jsonInString = mapper.writeValueAsString(test);
+			String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(test);
 			System.out.println(jsonInString);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
+	
+	@RequestMapping("/greeting")
+    public CarRecord carRecord(@RequestParam(value="vin", defaultValue="control1") String vin) {
+        return repository.findByVin(vin);
+    }
 
 }
