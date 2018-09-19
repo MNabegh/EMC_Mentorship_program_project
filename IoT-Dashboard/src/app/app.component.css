@@ -1,0 +1,16 @@
+.map {
+  float: left;
+  height: 100%;
+  padding: 0;
+  width: 75%;
+}
+
+.title{
+padding-left: 100;
+}
+
+.tab{
+  float: right;
+  width: 25%;
+  height: 100%;
+}
