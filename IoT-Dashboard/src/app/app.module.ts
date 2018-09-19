@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppComponent } from './app.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,

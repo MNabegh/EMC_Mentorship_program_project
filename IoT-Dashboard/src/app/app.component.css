@@ -2,7 +2,9 @@
   float: left;
   height: 100%;
   padding: 0;
-  width: 75%;
+  width: 73%;
+  border-right-style: groove;
+  margin-right: 0px;
 }
 
 .title{
@@ -10,7 +12,6 @@ padding-left: 100;
 }
 
 .tab{
-  float: right;
   width: 25%;
   height: 100%;
 }
