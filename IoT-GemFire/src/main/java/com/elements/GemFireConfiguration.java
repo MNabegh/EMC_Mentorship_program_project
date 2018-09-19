@@ -76,7 +76,7 @@ public class GemFireConfiguration
 		}*/
 	}
 	
-	@RequestMapping("/greeting")
+	@RequestMapping("/carRecord")
     public CarRecord carRecord(@RequestParam(value="vin", defaultValue="control1") String vin) {
         return repository.findByVin(vin);
     }
