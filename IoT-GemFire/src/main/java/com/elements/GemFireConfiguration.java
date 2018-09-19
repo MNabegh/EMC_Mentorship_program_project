@@ -22,6 +22,8 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 import com.elements.repistory.CarRecordRepository;
 import com.elements.repistory.POJO.CarRecord;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableKafka
@@ -61,7 +63,13 @@ public class GemFireConfiguration
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
 		CarRecord test = repository.findByVin("control1");
-		System.out.println("Got car " + test.getVin() + " Record " + test.getOrd());
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String jsonInString = mapper.writeValueAsString(test);
+			System.out.println(jsonInString);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
