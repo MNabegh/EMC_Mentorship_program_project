@@ -1,0 +1,22 @@
+{
+  "vin" : "control1",
+  "ord" : 138,
+  "timestamp" : "2018-8-20 20:28:18",
+  "altitude" : 34,
+  "barometric_PRESSURE" : 100,
+  "engine_COOLANT_TEMP" : 83,
+  "ambient_AIR_TEMP" : 4,
+  "engine_RPM" : 1137,
+  "intake_MANIFOLD_PRESSURE" : 31,
+  "air_INTAKE_TEMP" : 33,
+  "speed" : 32,
+  "latitude" : 29.9852110541,
+  "longitude" : 31.5682341503,
+  "fuel_LEVEL" : 55.7,
+  "engine_LOAD" : 20.4,
+  "maf" : 3.23,
+  "short_TERM_FUEL_TRIM_BANK_1" : 3.1,
+  "throttle_POS" : 18.8,
+  "engine_RUNTIME" : "00:55:53",
+  "dtc_NUMBER" : "MIL is OFF0 codes"
+}

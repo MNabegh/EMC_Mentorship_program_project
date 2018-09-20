@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CarService} from '../car.service';
+import { Observable} from 'rxjs'
+import {CarDetails} from '../carDetails';
 
 @Component({
   selector: 'app-car-details',
@@ -8,16 +10,19 @@ import {CarService} from '../car.service';
 })
 export class CarDetailsComponent implements OnInit {
   carDetails: string;
+  bye: string;
 
   constructor(private carService: CarService) { }
 
   ngOnInit() {
+    this.getCarDetails();
   }
 
   getCarDetails(): void
   {
+    this.bye = 'bye';
     this.carService.getCarDetails()
-      .subscribe(details => this.carDetails = details);
+      .subscribe(details => this.carDetails = details['engine_RUNTIME']);
   }
 
 }

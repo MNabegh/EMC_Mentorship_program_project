@@ -1,5 +1,9 @@
 package com.elements;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +23,9 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elements.repistory.CarRecordRepository;
@@ -65,18 +71,27 @@ public class GemFireConfiguration
 	{
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
-		/*CarRecord test = repository.findByVin("control1");
+		CarRecord test = repository.findByVin(newRecord.getVin());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			//String jsonInString = mapper.writeValueAsString(test);
+			String address = "/home/nabegh/Learn/EMC_Mentorship_program_project/IoT-Dashboard/src/assets/"+test.getVin()+".txt";
 			String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(test);
-			System.out.println(jsonInString);
+		    File file = new File(address);
+		    file.createNewFile();
+			BufferedWriter out = new BufferedWriter(new FileWriter(address));
+		    out.write(jsonInString);
+		    out.close();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-		}*/
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/carRecord")
+	@ResponseBody
     public CarRecord carRecord(@RequestParam(value="vin", defaultValue="control1") String vin) {
         return repository.findByVin(vin);
     }
