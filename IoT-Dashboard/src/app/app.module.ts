@@ -17,7 +17,8 @@ import { ClarityModule } from 'clarity-angular';
   imports: [
     BrowserModule,
     LeafletModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ClarityModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
