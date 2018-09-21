@@ -17,11 +17,11 @@ export class CarService
   constructor(private http: HttpClient,
   private messageService: MessageService){ }
 
-  getCarDetails():Observable<string>
+  getCarDetails()
   {
-    return this.http.get<string>(this.carDetailsUrl+this.vin)
+    return this.http.get(this.carDetailsUrl+this.vin)
       .pipe(
-      catchError(this.handleError<string>('getCarDetails'))
+      catchError(this.handleError('getCarDetails'))
       );
   }
 
