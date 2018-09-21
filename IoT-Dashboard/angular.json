@@ -29,15 +29,14 @@
               "src/assets/control1.txt"
             ],
             "styles": [
+              "node_modules/@clr/icons/clr-icons.min.css",
+              "node_modules/@clr/ui/clr-ui.min.css",
               "src/styles.css",
-              "./node_modules/leaflet/dist/leaflet.css",
-              "../node_modules/clarity-icons/clarity-icons.min.css",
-              "../node_modules/clarity-ui/clarity-ui.min.css"
+              "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [
-              "../node_modules/mutationobserver-shim/dist/mutationobserver.min.js",
-              "../node_modules/@webcomponents/custom-elements/custom-elements.min.js",
-              "../node_modules/clarity-icons/clarity-icons.min.js"
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js"
             ]
           },
           "configurations": {

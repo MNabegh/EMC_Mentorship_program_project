@@ -1,2 +1,30 @@
 <p *ngIf="bye">{{bye}}</p>
-<p *ngIf="carDetails">{{carDetails}}</p>
+<div *ngIf="carDetails">
+  <p class="item"><span class="badge">Veichle ID: </span>{{carDetails.vin}}</p>
+  <p class="item"><span class="badge">Latitude: </span>{{carDetails.latitude}}</p>
+  <p class="item"><span class="badge">Longitude: </span>{{carDetails.longitude}}</p>
+  <p class="item"><span class="badge">Altitude: </span>{{carDetails.altitude}}</p>
+  <p class="item"><span class="badge">Timestamp: </span>{{carDetails.timestamp}}</p>
+  <p class="item"><span class="badge">Speed: </span>{{carDetails.speed}}</p>
+  <p class="item"><span class="badge">Barometric pressure </span>{{carDetails.barometric_PRESSURE}}</p>
+  <p class="item"><span class="badge">Mass air flow: </span>{{carDetails.maf}}</p>
+  <p class="item"><span class="badge">Fuel level: </span>{{carDetails.fuel_LEVEL}}</p>
+  <p class="item"><span class="badge">Engine load: </span>{{carDetails.engine_LOAD}}</p>
+  <p class="item"><span class="badge">Short term fuel trim bank: </span>{{carDetails.short_TERM_FUEL_TRIM_BANK_1}}</p>
+  <p class="item"><span class="badge">Throttle position: </span>{{carDetails.throttle_POS}}</p>
+  <p class="item"><span class="badge">Air intake temperature: </span>{{carDetails.air_INTAKE_TEMP}}</p>
+  <p class="item"><span class="badge">Intake mainfold pressure: </span>{{carDetails.intake_MANIFOLD_PRESSURE}}</p>
+  <p class="item"><span class="badge">Engine RPM: </span>{{carDetails.engine_RPM}}</p>
+  <p class="item"><span class="badge">Ambient air temperature: </span>{{carDetails.ambient_AIR_TEMP}}</p>
+  <p class="item"><span class="badge">Engine coolant temperature: </span>{{carDetails.engine_COOLANT_TEMP}}</p>
+  <p class="item"><span class="badge"> Diagnostic Trouble Codes: </span>{{carDetails.dtc_NUMBER}}</p>
+  <p class="item"><span class="badge"> Engine runtime: </span>{{carDetails.engine_RUNTIME}}</p>
+
+
+</div>
+
+
+<!--
+engine_RUNTIME: string;
+dtc_NUMBER: string;
+-->

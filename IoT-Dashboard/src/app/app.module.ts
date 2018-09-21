@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { MessagesComponent } from './messages/messages.component';
-import { ClarityModule } from 'clarity-angular';
-
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,8 @@ import { ClarityModule } from 'clarity-angular';
     BrowserModule,
     LeafletModule.forRoot(),
     HttpClientModule,
-    ClarityModule.forRoot()
+    ClarityModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

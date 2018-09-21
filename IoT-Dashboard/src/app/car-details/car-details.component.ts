@@ -9,7 +9,7 @@ import {CarDetails} from '../carDetails';
   styleUrls: ['./car-details.component.css']
 })
 export class CarDetailsComponent implements OnInit {
-  carDetails: string;
+  carDetails: CarDetails;
   bye: string;
 
   constructor(private carService: CarService) { }
@@ -22,7 +22,7 @@ export class CarDetailsComponent implements OnInit {
   {
     this.bye = 'bye';
     this.carService.getCarDetails()
-      .subscribe(details => this.carDetails = details['engine_RUNTIME']);
+      .subscribe((details: CarDetails) => this.carDetails = details);
   }
 
 }

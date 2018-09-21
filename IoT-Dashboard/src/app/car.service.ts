@@ -10,7 +10,8 @@ import { MessageService } from './message.service';
 })
 export class CarService
 {
-  private carDetailsUrl = 'http://localhost:8090/carRecord';
+  private carDetailsUrl = 'http://localhost:8090/carRecord?vin=';
+  private vin = 'control1';
 
 
   constructor(private http: HttpClient,
@@ -18,10 +19,15 @@ export class CarService
 
   getCarDetails():Observable<string>
   {
-    return this.http.get<string>(this.carDetailsUrl)
+    return this.http.get<string>(this.carDetailsUrl+this.vin)
       .pipe(
       catchError(this.handleError<string>('getCarDetails'))
       );
+  }
+
+  setVin(vin: string): void
+  {
+    this.vin = vin;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
