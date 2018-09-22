@@ -20,17 +20,19 @@ export class CarDetails
   maf: number;
 	short_TERM_FUEL_TRIM_BANK_1: number;
   throttle_POS: number;
+
+  getLatitude(): number
+  {
+    return this.latitude;
+  }
+
+  getLongitude(): number
+  {
+    return this.longitude;
+  }
 }
 
-getLatitude(): number
-{
-  return this.latitude;
-}
 
-getLongitude(): number
-{
-  return this.longitude;
-}
 //{"vin":"control1","ord":593,"timestamp":"2018-8-21 18:56:4","altitude":38,
 //"barometric_PRESSURE":100,"engine_COOLANT_TEMP":90,"ambient_AIR_TEMP":4,"engine_RPM":764,
 //"intake_MANIFOLD_PRESSURE":59,"air_INTAKE_TEMP":35,"speed":9,"latitude":29.941322,

@@ -18,7 +18,7 @@ export class CarDetailsComponent implements OnInit {
 
   constructor(private carService: CarService) {
     this.btn1Style = "carButton";
-    this.btn2Style = "carButton";
+    this.btn2Style = "carButtonSelected";
     this.btn3Style = "carButton";
   }
 
@@ -28,9 +28,11 @@ export class CarDetailsComponent implements OnInit {
 
   getCarDetails(): void
   {
-    this.bye = 'bye';
     this.carService.getCarDetails()
-      .subscribe((details: CarDetails) => this.carDetails = details);
+      .subscribe((details: CarDetails) => {
+        this.carDetails = details;
+      this.getCarDetails();
+    });
   }
 
   car1(): void
@@ -38,6 +40,8 @@ export class CarDetailsComponent implements OnInit {
     this.btn1Style = "carButtonSelected";
     this.btn2Style = "carButton";
     this.btn3Style = "carButton";
+    this.carService.setVin('control1');
+    //this.getCarDetails();
   }
 
   car2(): void
@@ -45,6 +49,8 @@ export class CarDetailsComponent implements OnInit {
     this.btn1Style = "carButton";
     this.btn2Style = "carButtonSelected";
     this.btn3Style = "carButton";
+    this.carService.setVin('control2');
+    //this.getCarDetails();
   }
 
   car3(): void
@@ -52,6 +58,8 @@ export class CarDetailsComponent implements OnInit {
     this.btn1Style = "carButton";
     this.btn2Style = "carButton";
     this.btn3Style = "carButtonSelected";
+    this.carService.setVin('control3');
+    //this.getCarDetails();
   }
 
 }

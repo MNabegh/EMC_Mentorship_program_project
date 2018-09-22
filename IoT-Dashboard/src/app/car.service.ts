@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, scan } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
@@ -11,9 +11,8 @@ import {Coordinates} from './coordinates';
 })
 export class CarService
 {
-  private carDetailsUrl = 'http://localhost:8090/carRecord?vin=';
-  private vin = 'control1';
-  coordinates = new Coordinates(30.044281, 31.340002);
+  private carDetailsUrl = 'http://localhost:8080/carRecord?vin=';
+  vin = 'control2';
 
 
   constructor(private http: HttpClient,
@@ -22,7 +21,7 @@ export class CarService
   getCarDetails()
   {
     return this.http.get(this.carDetailsUrl+this.vin)
-      .pipe(tap((details: Coordinates) => this.coordinates = details),
+      .pipe(
       catchError(this.handleError('getCarDetails'))
       );
   }
@@ -30,6 +29,11 @@ export class CarService
   setVin(vin: string): void
   {
     this.vin = vin;
+  }
+
+  getVin(): Observable<string>
+  {
+    return of(this.vin);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

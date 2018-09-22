@@ -35,7 +35,8 @@ export class AppComponent  implements OnInit {
  };
 
  ngOnInit() {
-   this.getCoordinates();
+     this.getCoordinates();
+     this.getVin()
  }
 
  constructor(private carService: CarService) { }
@@ -44,15 +45,23 @@ getCoordinates(): void
 {
   this.carService.getCarDetails()
     .subscribe((details: CarDetails) =>{
-    this.summit.setLatLng([details.latitude, details.longitude];
+    this.summit.setLatLng([details.latitude, details.longitude]);
     this.options = {
         layers: [ this.streetMaps, this.summit],
         zoom: 7,
         center: latLng([ details.latitude, details.longitude ])
       };
       console.log(this.summit.getLatLng());
-    }));
+      this.getCoordinates();
+    });
 
 }
+
+getVin(): void
+{
+  this.carService.getVin()
+    .subscribe(vin => this.getCoordinates);
+}
+
 
 }
