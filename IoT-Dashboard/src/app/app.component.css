@@ -1,4 +1,4 @@
-.map {
+.mapp {
   float: left;
   height: 100%;
   padding: 0;
@@ -8,10 +8,14 @@
 }
 
 .title{
-padding-left: 100;
+padding-left: 20px;
+margin-bottom: 0px;
+padding-bottom: 0px;
 }
 
 .tab{
   width: 25%;
   height: 100%;
+  margin-top: 0px;
+  margin-left: 0px;
 }

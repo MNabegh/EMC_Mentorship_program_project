@@ -1,4 +1,9 @@
-<p *ngIf="bye">{{bye}}</p>
+<div class="nav-tab">
+  <button [ngClass]="[btn1Style]" (click)="car1()">Car 1</button>
+  <button [ngClass]="[btn2Style]" (click)="car2()">Car 2</button>
+  <button [ngClass]="[btn3Style]" (click)="car3()">Car 3</button>
+</div>
+
 <div *ngIf="carDetails">
   <p class="item"><span class="badge">Veichle ID: </span>{{carDetails.vin}}</p>
   <p class="item"><span class="badge">Latitude: </span>{{carDetails.latitude}}</p>

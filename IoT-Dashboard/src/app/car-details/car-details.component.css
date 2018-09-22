@@ -1,10 +1,52 @@
 .badge{
   color: #0E6C1E;
   font-size: 15px;
-  background-color: white;
+  background-color: inherit;
+  font-weight: bold;
 }
 
 .item{
   font-size: 15px;
   margin: 8px;
+  color: black;
+}
+
+.carButton{
+  width:33%;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  border-bottom: solid;
+  margin-top: 0px;
+  padding-top: 0px;
+  margin-left: 0px;
+  float: left;
+  border-bottom-color: #5EB36C;
+}
+
+.carButton:hover{
+  background-color: #ABABAB;
+}
+
+.carButtonSelected{
+  width: 33%;
+  background-color: #ABABAB;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  border-bottom: solid;
+  margin-top: 0px;
+  padding-top: 0px;
+  border-bottom-color: #0E6C1E;
+  float: left;
+}
+
+.nav-tab{
+  margin-top: 0px;
+  width: 27%;
+  float: right;
 }
