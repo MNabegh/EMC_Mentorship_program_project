@@ -33,6 +33,7 @@
 
 .carButtonSelected{
   width: 33%;
+  color: black;
   background-color: #ABABAB;
   border: none;
   cursor:pointer;
