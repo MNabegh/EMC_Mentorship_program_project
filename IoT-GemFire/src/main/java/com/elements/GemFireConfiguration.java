@@ -71,7 +71,7 @@ public class GemFireConfiguration
 	{
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
-		CarRecord test = repository.findByVin(newRecord.getVin());
+		/*CarRecord test = repository.findByVin(newRecord.getVin());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			//String jsonInString = mapper.writeValueAsString(test);
@@ -87,7 +87,7 @@ public class GemFireConfiguration
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	@RequestMapping("/carRecord")
