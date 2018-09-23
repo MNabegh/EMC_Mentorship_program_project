@@ -4,11 +4,11 @@ import multiprocessing
 mongoDB = subprocess.call("sudo service mongod start &", stdout= subprocess.PIPE, shell= True)  
 
 zookeeper = subprocess.call(
-	"sudo kafka/kafka_2.11-2.0.0//bin/zookeeper-server-start.sh kafka/kafka_2.11-2.0.0/config/zookeeper.properties &",
+	"sudo /home/nabegh/kafka/kafka_2.11-2.0.0//bin/zookeeper-server-start.sh /home/nabegh/kafka/kafka_2.11-2.0.0/config/zookeeper.properties &",
 	 stdout= subprocess.PIPE, shell= True) 
 
 kafka = subprocess.call(
-	"sudo kafka/kafka_2.11-2.0.0//bin/kafka-server-start.sh kafka/kafka_2.11-2.0.0/config/server.properties &",
+	"sudo /home/nabegh/kafka/kafka_2.11-2.0.0//bin/kafka-server-start.sh /home/nabegh/kafka/kafka_2.11-2.0.0/config/server.properties &",
 	 stdout= subprocess.PIPE, shell= True)
 
 #gemfire = subprocess.call(
