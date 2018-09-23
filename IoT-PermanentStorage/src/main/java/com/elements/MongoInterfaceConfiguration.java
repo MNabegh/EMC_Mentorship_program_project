@@ -50,9 +50,10 @@ public class MongoInterfaceConfiguration
 		return factory;
 	}
 	
-	@KafkaListener(topics = "Transformer", groupId = "group-id")
+	@KafkaListener(topics = "Gemfire", groupId = "group-id")
 	public void listen(String message) 
 	{
+		logger.info("listening to a message");
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
 		logger.info("Saved car " + newRecord.getVin()

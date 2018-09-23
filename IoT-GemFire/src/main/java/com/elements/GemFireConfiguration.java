@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.elements.repistory.CarRecordRepository;
 import com.elements.repistory.POJO.CarRecord;
+import com.elements.service.Gateway;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -47,6 +48,9 @@ public class GemFireConfiguration
 	
 	@Autowired
 	private CarRecordRepository repository;
+	
+	@Autowired
+	public Gateway gateway;
 	
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
@@ -66,11 +70,18 @@ public class GemFireConfiguration
 		return factory;
 	}
 	
+	@Bean
+	public Gateway gateway ()
+	{
+		return new Gateway();
+	}
+	
 	@KafkaListener(topics = "Transformer", groupId = "group-id")
 	public void listen(String message) 
 	{
 		CarRecord newRecord = new CarRecord(message);
 		repository.save(newRecord);
+		gateway.sendMessage(message);
 		/*CarRecord test = repository.findByVin(newRecord.getVin());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
