@@ -12,7 +12,7 @@ import {Coordinates} from './coordinates';
 export class CarService
 {
   private carDetailsUrl = 'http://localhost:8080/carRecord?vin=';
-  vin = 'control2';
+  vin = 'control1';
 
 
   constructor(private http: HttpClient,

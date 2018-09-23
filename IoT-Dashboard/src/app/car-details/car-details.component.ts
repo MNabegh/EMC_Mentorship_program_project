@@ -17,8 +17,8 @@ export class CarDetailsComponent implements OnInit {
   btn3Style: string;
 
   constructor(private carService: CarService) {
-    this.btn1Style = "carButton";
-    this.btn2Style = "carButtonSelected";
+    this.btn1Style = "carButtonSelected";
+    this.btn2Style = "carButton";
     this.btn3Style = "carButton";
   }
 
@@ -30,8 +30,15 @@ export class CarDetailsComponent implements OnInit {
   {
     this.carService.getCarDetails()
       .subscribe((details: CarDetails) => {
-        this.carDetails = details;
-      this.getCarDetails();
+        if(!details)
+        {
+          this.carDetails = null;
+          this.getCarDetails();
+        }
+        else{
+          this.carDetails = details;
+          this.getCarDetails();
+        }
     });
   }
 
